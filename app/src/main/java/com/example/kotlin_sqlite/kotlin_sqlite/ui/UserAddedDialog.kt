@@ -1,7 +1,5 @@
 package com.example.kotlin_sqlite.kotlin_sqlite.ui
 
-import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 
-import com.example.kotlin_roomdb.database.User
-import com.example.kotlin_sqlite.kotlin_sqlite.viewmodel.RoomViewModel
 import com.example.kotlin_sqlite.databinding.UsereditdialogBinding
+import com.example.kotlin_sqlite.kotlin_sqlite.database.User
 import com.example.kotlin_sqlite.kotlin_sqlite.repository.UserRepository
+import com.example.kotlin_sqlite.kotlin_sqlite.viewmodel.SqliteViewModel
 
 
 class DialogBox(context: Context, val user: User) : DialogFragment() {
 
-    private val roomvViewModel: RoomViewModel = RoomViewModel(context)
+    private val sqliteViewModel = SqliteViewModel(context)
     lateinit var binding: UsereditdialogBinding
 
     override fun onCreateView(
@@ -34,7 +34,7 @@ class DialogBox(context: Context, val user: User) : DialogFragment() {
 
         binding.UpdateUserbtn.setOnClickListener {
 
-            roomvViewModel.updateUser(
+            sqliteViewModel.updateUser(
                 User(
                     user.Id, binding.diaFname.text.toString(), binding.diaLname.text.toString(),
                     (binding.diaAge.text.toString()).toInt()

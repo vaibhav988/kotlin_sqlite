@@ -1,9 +1,9 @@
 package com.example.kotlin_sqlite.kotlin_sqlite.repository
 
 import android.content.Context
-import com.example.kotlin_roomdb.database.User
 import com.example.kotlin_sqlite.kotlin_sqlite.database.DatabaseService
 import com.example.kotlin_sqlite.kotlin_sqlite.database.SqliteDataBase
+import com.example.kotlin_sqlite.kotlin_sqlite.database.User
 
 class UserRepository(val context: Context) {
 

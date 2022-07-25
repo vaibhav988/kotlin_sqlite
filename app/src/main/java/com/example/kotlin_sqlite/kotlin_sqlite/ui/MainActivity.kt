@@ -4,20 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlin_roomdb.database.User
-import com.example.kotlin_roomdb.ui.RoomDataAdapter
 import com.example.kotlin_sqlite.databinding.ActivityMainBinding
-import com.example.kotlin_sqlite.kotlin_sqlite.database.DatabaseService
-import com.example.kotlin_sqlite.kotlin_sqlite.database.SqliteDataBase
-import com.example.kotlin_sqlite.kotlin_sqlite.repository.UserRepository
-import com.example.kotlin_sqlite.kotlin_sqlite.viewmodel.RoomViewModel
+import com.example.kotlin_sqlite.kotlin_sqlite.database.User
+import com.example.kotlin_sqlite.kotlin_sqlite.viewmodel.SqliteViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var roomDataAdapter: RoomDataAdapter
+    lateinit var sqliteViewModel: SqliteViewModel
     lateinit var binding: ActivityMainBinding
-    lateinit var roomviewmodel: RoomViewModel
+    lateinit var sqliteDataAdapter: SqliteDataAdapter
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,16 +27,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initview() {
-        roomviewmodel = RoomViewModel(applicationContext)
-        roomDataAdapter = RoomDataAdapter(applicationContext, supportFragmentManager, roomviewmodel)
-        roomDataAdapter.submitList(roomviewmodel.getList())
+        sqliteViewModel = SqliteViewModel(applicationContext)
+        sqliteDataAdapter = SqliteDataAdapter(applicationContext, supportFragmentManager, sqliteViewModel)
+        sqliteDataAdapter.submitList(sqliteViewModel.getList())
         binding.recycler.apply {
-            adapter = roomDataAdapter
+            adapter = sqliteDataAdapter
             layoutManager = LinearLayoutManager(applicationContext)
         }
-        roomviewmodel.userRepository.change.observe(this)
+        sqliteViewModel.userRepository.change.observe(this)
         {
-            roomDataAdapter.submitList(roomviewmodel.getList())
+            sqliteDataAdapter.submitList(sqliteViewModel.getList())
 
         }
     }
@@ -61,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             val lName = binding.addUserDia.editLname.text.toString()
             val age = binding.addUserDia.editAge.text.toString()
 
-            roomviewmodel.insertUser(
+            sqliteViewModel.insertUser(
                 User(0, fName, lName, age.toInt())
             )
             showPopUp()
