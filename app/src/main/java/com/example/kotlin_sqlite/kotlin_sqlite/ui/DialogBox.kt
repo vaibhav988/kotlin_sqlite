@@ -15,7 +15,7 @@ import com.example.kotlin_sqlite.kotlin_sqlite.repository.UserRepository
 
 class DialogBox(context: Context, val user: User) : DialogFragment() {
 
-    val roomviewmodel: RoomViewModel = RoomViewModel(context)
+    private val roomvViewModel: RoomViewModel = RoomViewModel(context)
     lateinit var binding: UsereditdialogBinding
 
     override fun onCreateView(
@@ -27,14 +27,14 @@ class DialogBox(context: Context, val user: User) : DialogFragment() {
         setPrperties()
         return binding.root.rootView
     }
-    fun setPrperties() {
+    private fun setPrperties() {
         binding.diaAge.setText(user.age.toString())
         binding.diaFname.setText(user.firstName)
         binding.diaLname.setText(user.lastName)
 
         binding.UpdateUserbtn.setOnClickListener {
 
-            roomviewmodel.updateUser(
+            roomvViewModel.updateUser(
                 User(
                     user.Id, binding.diaFname.text.toString(), binding.diaLname.text.toString(),
                     (binding.diaAge.text.toString()).toInt()

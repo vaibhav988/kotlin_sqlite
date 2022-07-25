@@ -1,4 +1,5 @@
 package com.example.kotlin_sqlite.kotlin_sqlite.ui
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var roomviewmodel: RoomViewModel
 
     @OptIn(DelicateCoroutinesApi::class)
-    override  fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,48 +29,42 @@ class MainActivity : AppCompatActivity() {
             addUserOnclick()
         }
     }
-    fun initview()
-    {
-        roomviewmodel = RoomViewModel(applicationContext )
-        roomDataAdapter = RoomDataAdapter(applicationContext , supportFragmentManager , roomviewmodel)
+
+    fun initview() {
+        roomviewmodel = RoomViewModel(applicationContext)
+        roomDataAdapter = RoomDataAdapter(applicationContext, supportFragmentManager, roomviewmodel)
         roomDataAdapter.submitList(roomviewmodel.getList())
         binding.recycler.apply {
-            adapter  = roomDataAdapter
+            adapter = roomDataAdapter
             layoutManager = LinearLayoutManager(applicationContext)
         }
         roomviewmodel.userRepository.change.observe(this)
         {
             roomDataAdapter.submitList(roomviewmodel.getList())
-            roomDataAdapter.notifyDataSetChanged()
 
         }
     }
-     @OptIn(DelicateCoroutinesApi::class)
-      fun addUserOnclick()
-    {
-        if(binding.addUserDia.editFname.text.toString().isEmpty())
-        {
+
+    @OptIn(DelicateCoroutinesApi::class)
+    fun addUserOnclick() {
+        if (binding.addUserDia.editFname.text.toString().isEmpty()) {
             binding.addUserDia.editFname.error = "Please fill it"
             return
-        }
-        else if(binding.addUserDia.editLname.text.toString().isEmpty())
-        {
+        } else if (binding.addUserDia.editLname.text.toString().isEmpty()) {
             binding.addUserDia.editLname.error = "Please fill it"
             return
-        }
-        else if(binding.addUserDia.editAge.text.toString().isEmpty())
-        {
+        } else if (binding.addUserDia.editAge.text.toString().isEmpty()) {
             binding.addUserDia.editAge.error = "Please fill it"
             return
-        }
-        else {
+        } else {
             val fName = binding.addUserDia.editFname.text.toString()
             val lName = binding.addUserDia.editLname.text.toString()
-            val age =  binding.addUserDia.editAge.text.toString()
+            val age = binding.addUserDia.editAge.text.toString()
 
-                roomviewmodel.insertUser(
-                    User(0, fName , lName , age.toInt() )
-                )
+            roomviewmodel.insertUser(
+                User(0, fName, lName, age.toInt())
+            )
+            showPopUp()
 
             Toast.makeText(
                 applicationContext,
@@ -81,6 +76,12 @@ class MainActivity : AppCompatActivity() {
             binding.addUserDia.editAge.setText("")
 
         }
+
+    }
+
+    fun showPopUp() {
+        val userAddedDialog = UserAddedDialog()
+        userAddedDialog.show(supportFragmentManager, "t")
 
     }
 }

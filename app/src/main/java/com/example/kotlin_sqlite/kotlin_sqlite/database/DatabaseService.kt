@@ -18,5 +18,4 @@ object DatabaseService {
         return DatabaseInstance!!
     }
 
-
 }
