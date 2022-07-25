@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="10dp"
+    >
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <soup.neumorphism.NeumorphTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit User"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:focusable="true"
+
+            android:focusableInTouchMode="true"
+            android:textColorHint="#8E24AA"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Update First Name"
+                android:id="@+id/dia_fname"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:textSize="20dp"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:focusable="true"
+
+            android:focusableInTouchMode="true"
+            android:textColorHint="#8E24AA"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Update Last Name"
+                android:id="@+id/dia_lname"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:textSize="20dp"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:focusable="true"
+
+            android:focusableInTouchMode="true"
+            android:textColorHint="#7B1FA2"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Update Age"
+                android:id="@+id/dia_age"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:textSize="20dp"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <soup.neumorphism.NeumorphButton
+          android:id="@+id/Update_userbtn"
+          android:layout_width="150dp"
+          android:layout_height="70dp"
+          android:layout_margin="30dp"
+          android:text="Update User"
+          android:textStyle="bold"
+          android:textSize="20dp"
+          app:neumorph_backgroundColor="#F3C107"
+          android:textColor="@color/white"
+          android:gravity="center"
+          android:layout_gravity="right"
+          />
+    </LinearLayout>
+
+</LinearLayout>
+
