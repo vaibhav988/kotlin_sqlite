@@ -20,7 +20,7 @@ const val COL_AGE = "userAge"
 const val COL_ID = "userId"
 const val COL_LNAME = "userLname"
 
-class SqliteDataBase(private val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 1) {
+class SqliteDataBase( context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 1) {
     companion object {
         var changed: MutableLiveData<Int> = MutableLiveData()
     }
@@ -28,12 +28,13 @@ class SqliteDataBase(private val context: Context) : SQLiteOpenHelper(context, D
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createQuery =
-            "CREATE TABLE " + TABLE_NAME + "(" + COL_ID + " Integer PRIMARY KEY AUTOINCREMENT," +
-                    COL_FNAME + " varchar(256), " + COL_LNAME + " varchar(256)," + COL_AGE + " Integer )"
+            "CREATE TABLE " + TABLE_NAME + "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    COL_FNAME + " VARCHAR(256), " + COL_LNAME + " VARCHAR(256)," + COL_AGE + " INTEGER )"
 
         if (db != null) {
             db.execSQL(createQuery)
         }
+
 
     }
 
@@ -55,7 +56,6 @@ class SqliteDataBase(private val context: Context) : SQLiteOpenHelper(context, D
         val resp = db.insert(TABLE_NAME, null, cv)
         if (resp != "-1".toLong()) {
             changeChange()
-
         }
         db.close()
     }
@@ -101,8 +101,6 @@ class SqliteDataBase(private val context: Context) : SQLiteOpenHelper(context, D
         db.execSQL(query)
         db.close()
         changeChange()
-
     }
-
 
 }
