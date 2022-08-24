@@ -33,8 +33,6 @@ class SqliteDataBase( context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
         if (db != null) {
             db.execSQL(createQuery)
         }
-
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
